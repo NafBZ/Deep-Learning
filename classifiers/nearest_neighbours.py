@@ -2,8 +2,7 @@ import numpy as np
 
 
 def manhattan(l1, l2):
-    distance = np.sum(np.abs(l1-l2), axis=1)
-    return distance
+    return np.sum(np.abs(l1-l2), axis=1)
 
 
 class NearestNeighbour:
