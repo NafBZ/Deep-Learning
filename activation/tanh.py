@@ -17,7 +17,9 @@ for i in range(len(hidden_layers)):
     X = design_matrix if i == 0 else feature_output[i-1]
     layer_input = X.shape[1]
     layer_output = hidden_layers[i]
-    W = np.random.randn(layer_input, layer_output)
+    #W = np.random.randn(layer_input, layer_output)* 0.01 #Weights are small thus small change in gradients
+    #W = np.random.randn(layer_input, layer_output)* 1.00 #Saturated as the weights are high
+    W = np.random.randn(layer_input, layer_output)/ np.sqrt(layer_input)  #Xavier Initialisation 
     H = np.dot(X,W)
     H = activations[nonlinearities[i]](H)
     feature_output[i] = H
@@ -38,7 +40,7 @@ plt.plot(feature_output.keys(), layer_mean, 'ob-')
 plt.title("Layer Mean")
 
 plt.subplot(122)
-plt.plot(feature_output.keys(), layer_std, 'ob-')
+plt.plot(feature_output.keys(), layer_std, 'or-')
 plt.title("Layer Std")
 
 

@@ -3,3 +3,7 @@
 .vscode/settings.json
 
 .ipynb_checkpoints
+
+__pycache__
+
+./DCGAN/network/play.py
