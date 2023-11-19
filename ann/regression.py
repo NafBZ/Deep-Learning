@@ -16,7 +16,7 @@ class RegressionModel(nn.Module):
         return self.regression(x)
 
 class RegressionTrainer:
-    def __init__(self, model, learning_rate=0.01, epochs=50):
+    def __init__(self, model, learning_rate=0.01, epochs=200):
         self.model = model
         self.learning_rate = learning_rate
         self.epochs = epochs
@@ -44,7 +44,7 @@ class RegressionTrainer:
         return predictions, losses
 
 def data(m):
-    N = 100
+    N = 200
     x = torch.randn(N, 1)
     y = m * x + torch.randn(N, 1) / 2
     return x, y
@@ -54,7 +54,7 @@ model = RegressionModel()
 trainer = RegressionTrainer(model)
 
 # Generate data
-x, y = data(0.7)
+x, y = data(0.8)
 
 # Train the model
 preds, losses = trainer.train(x, y)
@@ -64,11 +64,13 @@ fig, ax = plt.subplots(1, 2, figsize=(12, 5))
 ax[0].plot(losses, 'o', lw=0.1, markerfacecolor='w')
 ax[0].set_xlabel('Epochs')
 ax[0].set_ylabel('Loss')
+ax[0].set_title('Loss Graph')
 
 ax[1].plot(x, y, 'o', label='Actual Data')
 ax[1].plot(x, preds, 'rs', label='Predictions')
 ax[1].set_xlabel('x')
 ax[1].set_ylabel('y')
+ax[1].set_title('Actual vs. Predicted')
 
 ax[1].legend()
 plt.show()
